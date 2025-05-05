@@ -30,9 +30,11 @@ app.get('/authenticate/:username/:password', async (request, response) => {
     const username = request.params.username;
     const password = request.params.password;
 
-    const query = `SELECT * FROM users WHERE user_name='${username}' and password='${password}'`;
+    // og: const query = `SELECT * FROM users WHERE user_name='${username}' and password='${password}'`;
+    const query = 'SELECT * FROM users WHERE user_name = $1 AND password = $2'
     console.log(query);
-    pool.query(query, (error, results) => {
+    // og: pool.query(query, (error, results) => {
+    pool.query(query, [username, password], (error, results) => {
       if (error) {
         throw error
       }
