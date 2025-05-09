@@ -19,7 +19,10 @@ const pool = new pg.Pool({
 
 console.log("Connecting...:")
 
-app.use(cors());
+const corsOptions = { 
+  origin: "http://localhost:8080"
+}
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(
     bodyParser.urlencoded({
