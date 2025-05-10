@@ -7,12 +7,13 @@ const cors = require('cors')
 const bcrypt = require('bcrypt')
 
 const port=3000;
+require('dotenv').config();
 
 const pool = new pg.Pool({
-    user: 'secadv',
+    user: process.env.DB_USER,
     host: 'db',
-    database: 'pxldb',
-    password: 'ilovesecurity',
+    database: process.env.DB,
+    password: process.env.DB_PASSWORD,
     port: 5432,
     connectionTimeoutMillis: 5000
 })
